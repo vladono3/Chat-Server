@@ -33,6 +33,7 @@ class Discussion(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, nullable=False, default=uuid.uuid4)
     contacts = Column(ARRAY(UUID(as_uuid=True)), nullable=False)
+    name = Column(String)  # Add a new column for the name
 
     @staticmethod
     def discussions_dict(discussions):
@@ -41,7 +42,8 @@ class Discussion(Base):
             serialized_contacts = [str(contact) for contact in discussion.contacts]
             discussions_dict[str(discussion.id)] = {
                 "id": str(discussion.id),
-                "contacts": serialized_contacts
+                "contacts": serialized_contacts,
+                "name": discussion.name  # Include the name in the serialized dictionary
             }
         return discussions_dict
 

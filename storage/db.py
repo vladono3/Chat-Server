@@ -35,8 +35,8 @@ class DataBase:
         return obj
 
     @staticmethod
-    def create_discussion(contacts, discussion_id):
-        obj = Discussion(contacts=contacts, id=discussion_id)
+    def create_discussion(contacts, discussion_id, name):
+        obj = Discussion(contacts=contacts, id=discussion_id, name=name)
         session.add(obj)
         session.commit()
         return obj

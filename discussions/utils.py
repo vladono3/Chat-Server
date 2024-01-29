@@ -18,7 +18,7 @@ def create_new_discussion(data):
     discussion_data = data.model_dump()
     discussion_data["id"] = discussion_id
 
-    db.create_discussion(contacts=discussion_data["contacts"], discussion_id=discussion_data["id"])
+    db.create_discussion(contacts=discussion_data["contacts"], discussion_id=discussion_data["id"], name=discussion_data["name"])
 
     return discussion_data
 
@@ -32,5 +32,4 @@ def get_discussions(user_id):
         contacts = discussion.get("contacts", [])
         if user_id in contacts:
             discussion_list.append(discussion)
-
     return discussion_list
